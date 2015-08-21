@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-md-3">
+
+    <button class="btn btn-md btn-primary" ng-click="showOpen()">
+      Outstanding Requests
+    </button>
+    <br><br>
+    <button class="btn btn-md btn-default" ng-click="showClosed()">
+      Closed Requests
+    </button>
+
+  </div>
+  <div class="col-md-9">
+
+    <div class="row search-row">
+      <div class="col-md-9">
+        <input class="form-control" placeholder="search request" type="text" ng-model="searchText" />
+      </div>
+      <div class="col-md-3">
+
+        <div ng-controller="modalController">
+            <script type="text/ng-template" id="myModalContent.html">
+                <div class="modal-header">
+                    <h3 class="modal-title">Track a New Request</h3>
+                </div>
+                <div class="modal-body">
+
+                  <div ng-repeat="field in requestFields">
+                    <div class="form-group">
+                      <input class="form-control" type="text" placeholder="{{field.name}}" ng-model="field.model" required="true" />
+                    </div>
+                  </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                </div>
+            </script>
+
+          <button class="btn btn-md btn-success pull-right" ng-click="open('sm')">
+            Create New Request
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-primary">
+          <!-- Default panel contents -->
+          <div class="panel-heading">Outstanding Requests</div>
+
+          <!-- Table -->
+          <table class="table">
+
+            <thead>
+              <tr>
+                <th ng-repeat="header in tableHeaders">{{header.title}}</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr ng-repeat="request in requests | filter:searchText | filter:{status: statusKey}">
+                <td>{{request.requester}}</td>
+                <td>{{request.client}}</td>
+                <td>{{request.drug}}</td>
+                <td>{{request.priority}}</td>
+                <td>{{request.requested}}</td>
+                <td>{{request.batch}}</td>
+                <td>{{request.status}}</td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

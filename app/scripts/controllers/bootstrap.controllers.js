@@ -6,14 +6,6 @@
     .module('dataSummonerApp')
     .controller('modalController', function ($scope, $modal, $log) {
 
-    $scope.requestFields = [
-      { name: 'drug', model: ''},
-      { name: 'client', model: ''},
-      { name: 'priority', model: ''},
-      { name: 'status', model: ''},
-      { name: 'batch', model: ''}
-    ];
-
     $scope.animationsEnabled = true;
 
     $scope.open = function (size) {
@@ -35,11 +27,25 @@
 
   angular
     .module('dataSummonerApp')
-    .controller('modalInstanceController', function ($scope, $modalInstance, $window, $rootScope) {
+    .controller('modalInstanceController', function ($scope, $modalInstance, $window, $rootScope, Restangular) {
     // Restangular.setDefaultHeaders({ 'Content-Type': 'application/json' });
 
     var vm = $scope;
-    vm.newRequest = { request: { drug: "", client: "", priority: "", status: "", batch: ""} };
+    vm.newRequest = {
+        request_date: "",
+        client: "",
+        drug: {
+          aedrug_id: null,
+          drug_notes: ""
+        },
+        batch: {
+          batch_name: "",
+          status: {
+            label: "",
+            modified: ""
+          }
+        }
+      };
 
     vm.status = {
       isopen: false
@@ -60,6 +66,11 @@
     };
 
     vm.ok = function () {
+      console.log($scope.newRequest);
+
+      Restangular.all('request').post($scope.newRequest).then(function(data){
+        $rootScope.$broadCast('newrequest');
+      })
       $modalInstance.close();
     };
 

@@ -22,17 +22,17 @@ angular
     'ngToast',
     'xeditable'
   ])
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider, RestangularProvider) {
 
     // For any unmatched url, redirect to /portfolio
-    $urlRouterProvider.otherwise('/main');
+    $urlRouterProvider.otherwise('/login');
 
     // States
     $stateProvider
-    .state('main', {
-      url: '/main',
-      templateUrl: 'views/main.html',
-      controller: 'mainController',
+    .state('login', {
+      url: '/login',
+      templateUrl: 'views/login.html',
+      controller: 'loginController',
     })
     .state('about', {
       url: '/about',
@@ -49,6 +49,17 @@ angular
       templateUrl: 'views/admin.html',
       controller: 'adminController',
     });
+
+    RestangularProvider.setBaseUrl('http://192.168.1.100:8001/');
+
+    RestangularProvider.setRequestInterceptor(function(elem, operation, what) {
+
+      if (operation === 'put') {
+        elem._id = undefined;
+        return elem;
+      }
+      return elem;
+    })
   })
   .run(function(editableOptions) {
     editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'

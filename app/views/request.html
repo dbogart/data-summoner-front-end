@@ -2,13 +2,13 @@
   <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        Ask Nicely for a FOIA Request
+        Ask nicely for a FOIA Request
       </div>
       <div class="panel-body">
       <form ng-submit="submit()">
         <div class="user-request-body">
           <div class="form-group">
-            <input class="form-control" type="text" ng-model="newRequest.drug" placeholder="drug" required="true" />
+            <input class="form-control" type="text" ng-model="newRequest.drug.aedrug_id" placeholder="drug ID" required="true" />
           </div>
           <div class="form-group">
             <input class="form-control" type="client" ng-model="newRequest.client" placeholder="client (optional)" />

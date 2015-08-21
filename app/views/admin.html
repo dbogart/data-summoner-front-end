@@ -5,7 +5,7 @@
       Outstanding Requests
     </button>
     <br><br>
-    <button class="btn btn-md btn-default" ng-click="showClosed()">
+    <button class="btn btn-md btn-default closed-requests-button" ng-click="showClosed()">
       Closed Requests
     </button>
 
@@ -25,11 +25,27 @@
                 </div>
                 <div class="modal-body">
 
-                  <div ng-repeat="field in requestFields">
-                    <div class="form-group">
-                      <input class="form-control" type="text" placeholder="{{field.name}}" ng-model="field.model" required="true" />
-                    </div>
+                  <div class="form-group">
+                    <input class="form-control" type="text" placeholder="drug ID" ng-model="newRequest.drug.aedrug_id" required="true" />
                   </div>
+                  <div class="form-group">
+                    <input class="form-control" type="text" placeholder="client" ng-model="newRequest.client" required="true" />
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" type="text" placeholder="batch" ng-model="newRequest.batch.batch_name" required="true" />
+                  </div>
+                  Priority:
+                  <select ng-model="newRequest.priority">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                  Status:
+                  <select ng-model="newRequest.batch.status.label">
+                    <option value="open">Open</option>
+                    <option value="pending">Pending</option>
+                    <option value="closed">Closed</option>
+                  </select>
 
                 </div>
                 <div class="modal-footer">
@@ -67,10 +83,22 @@
                 <td><span editable-text="request.requester" onaftersave="updateRequest(request)">{{request.requester}}</span></td>
                 <td><span editable-text="request.client" onaftersave="updateRequest(request)">{{request.client}}</span></td>
                 <td><span editable-text="request.drug" onaftersave="updateRequest(request)">{{request.drug}}</span></td>
-                <td><span editable-text="request.priority" onaftersave="updateRequest(request)">{{request.priority}}</span></td>
+                <td>
+                  <select ng-model="request.priority" ng-change="updateRequest(request)">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                  </select>
+                </td>
                 <td><span editable-text="request.requested" onaftersave="updateRequest(request)">{{request.requested}}</span></td>
                 <td><span editable-text="request.batch.batch_name" onaftersave="updateRequest(request)">{{request.batch.batch_name}}</span></td>
-                <td><span editable-text="request.batch.status.label" onaftersave="updateRequest(request)">{{request.batch.status.label}}</span></td>
+                <td>
+                  <select ng-model="request.batch.status.label" ng-change="updateRequest(request)">
+                    <option value="open">Open</option>
+                    <option value="pending">Pending</option>
+                    <option value="closed">Closed</option>
+                  </select>
+                </td>
               </tr>
             </tbody>
 

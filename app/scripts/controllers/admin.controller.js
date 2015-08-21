@@ -6,18 +6,22 @@
     .module('dataSummonerApp')
     .controller('adminController', adminController);
 
-    adminController.$inject = ['$scope', 'adminService', 'Restangular'];
+    adminController.$inject = ['$scope', '$rootScope', 'adminService', 'Restangular'];
 
-    function adminController($scope, adminService, Restangular) {
+    function adminController($scope, $rootScope, adminService, Restangular) {
 
       var vm = $scope;
       var requestList = Restangular.all('request');
 
       function getRequestList() {
-        requestList.getList().then(function(){
+        requestList.getList().then(function(requests){
           $scope.requests = requests;
+          console.log(requests)
         });
       }
+
+      // get requests
+      getRequestList();
 
       vm.statusKey = 'open';
       vm.tableHeaders = adminService.getTableHeaders();
@@ -38,6 +42,11 @@
       vm.showClosed = function() {
         vm.statusKey = 'closed'
       }
+
+      $rootScope.$on('newrequest', function(event, args){
+        console.log('lol');
+        getRequestList();
+      });
     }
 
 })();

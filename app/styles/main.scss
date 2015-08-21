@@ -103,6 +103,14 @@ body {
 .editable-click, a.editable-click {
   color: black;
 }
+
 .editable-wrap, .editable-wrap > .editable-controls, .editable-wrap > .editable-controls > .editable-input {
   width: 92%;
+}
+
+.closed-requests-button {
+  width: 166px;
+}
+.login-body {
+  padding: 25px;
 }

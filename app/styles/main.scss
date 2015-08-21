@@ -99,3 +99,10 @@ body {
 .search-row {
   margin-bottom: 15px;
 }
+
+.editable-click, a.editable-click {
+  color: black;
+}
+.editable-wrap, .editable-wrap > .editable-controls, .editable-wrap > .editable-controls > .editable-input {
+  width: 92%;
+}

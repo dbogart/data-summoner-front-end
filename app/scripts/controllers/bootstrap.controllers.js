@@ -38,31 +38,32 @@
     .controller('modalInstanceController', function ($scope, $modalInstance, $window, $rootScope) {
     // Restangular.setDefaultHeaders({ 'Content-Type': 'application/json' });
 
-    $scope.newTooltip = { tooltip: {state_name: "", term: "", definition: ""} };
+    var vm = $scope;
+    vm.newRequest = { request: { drug: "", client: "", priority: "", status: "", batch: ""} };
 
-    $scope.status = {
+    vm.status = {
       isopen: false
     };
 
-    $scope.selectState = function(state) {
-      $scope.newTooltip.tooltip.state_name = state;
+    vm.selectState = function(state) {
+      vm.newTooltip.tooltip.state_name = state;
     };
 
-    $scope.toggled = function(open) {
+    vm.toggled = function(open) {
       $log.log('Dropdown is now: ', open);
     };
 
-    $scope.toggleDropdown = function($event) {
+    vm.toggleDropdown = function($event) {
       $event.preventDefault();
       $event.stopPropagation();
-      $scope.status.isopen = !$scope.status.isopen;
+      vm.status.isopen = !vm.status.isopen;
     };
 
-    $scope.ok = function () {
+    vm.ok = function () {
       $modalInstance.close();
     };
 
-    $scope.cancel = function () {
+    vm.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
   });

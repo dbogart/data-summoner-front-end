@@ -64,13 +64,13 @@
 
             <tbody>
               <tr ng-repeat="request in requests | filter:searchText | filter:{status: statusKey}">
-                <td>{{request.requester}}</td>
-                <td>{{request.client}}</td>
-                <td>{{request.drug}}</td>
-                <td>{{request.priority}}</td>
-                <td>{{request.requested}}</td>
-                <td>{{request.batch}}</td>
-                <td>{{request.status}}</td>
+                <td><span editable-text="request.requester" onaftersave="updateRequest(request)">{{request.requester}}</span></td>
+                <td><span editable-text="request.client" onaftersave="updateRequest(request)">{{request.client}}</span></td>
+                <td><span editable-text="request.drug" onaftersave="updateRequest(request)">{{request.drug}}</span></td>
+                <td><span editable-text="request.priority" onaftersave="updateRequest(request)">{{request.priority}}</span></td>
+                <td><span editable-text="request.requested" onaftersave="updateRequest(request)">{{request.requested}}</span></td>
+                <td><span editable-text="request.batch.batch_name" onaftersave="updateRequest(request)">{{request.batch.batch_name}}</span></td>
+                <td><span editable-text="request.batch.status.label" onaftersave="updateRequest(request)">{{request.batch.status.label}}</span></td>
               </tr>
             </tbody>
 

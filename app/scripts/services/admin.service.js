@@ -10,9 +10,25 @@
 
           return {
               getRequests: getRequests,
+              getTableHeaders: getTableHeaders
           };
 
+          function getTableHeaders() {
+            var tableHeaders = [
+              {title: "Requester"},
+              {title: "Client Company"},
+              {title: "Drug"},
+              {title: "Priority"},
+              {title: "Request Date"},
+              {title: "Batch"},
+              {title: "Status"}
+            ];
+
+            return tableHeaders;
+          }
+
           function getRequests() {
+
             var requests = [
               {
                 requester: "test",

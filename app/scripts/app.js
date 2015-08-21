@@ -17,7 +17,10 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.router',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'restangular',
+    'ngToast',
+    'xeditable'
   ])
   .config(function($stateProvider, $urlRouterProvider) {
 
@@ -46,4 +49,7 @@ angular
       templateUrl: 'views/admin.html',
       controller: 'adminController',
     });
-  });
+  })
+  .run(function(editableOptions) {
+    editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});

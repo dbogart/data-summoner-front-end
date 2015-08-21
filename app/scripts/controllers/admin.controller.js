@@ -15,17 +15,15 @@
 
       function getRequestList() {
         requestList.getList().then(function(requests){
-          $scope.requests = requests;
-          console.log(requests)
+          $scope.requests = requests.plain();
         });
       }
 
       // get requests
       getRequestList();
 
-      vm.statusKey = 'open';
+      vm.statusKey = 'Open';
       vm.tableHeaders = adminService.getTableHeaders();
-      vm.requests = adminService.getRequests();
 
       vm.updateRequest = function(updatedRequest) {
         var request = {"request": updatedRequest}
@@ -36,11 +34,15 @@
       }
 
       vm.showOpen = function() {
-        vm.statusKey = 'open'
+        vm.statusKey = 'Open'
       }
 
       vm.showClosed = function() {
-        vm.statusKey = 'closed'
+        vm.statusKey = 'Closed'
+      }
+
+      vm.openOrClosed = function(request) {
+        return request.batch.status.label === vm.statusKey;
       }
 
       $rootScope.$on('newrequest', function(event, args){

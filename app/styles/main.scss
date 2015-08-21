@@ -88,11 +88,11 @@ body {
   }
 }
 
-.user-request-body {
-  padding: 30px 20px 0px 20px;
+.user-request-body, .login-body {
+  padding: 20px 20px 0px 20px;
 
   .form-group {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
 }
 
@@ -108,9 +108,11 @@ body {
   width: 92%;
 }
 
-.closed-requests-button {
-  width: 166px;
+.closed-requests-button, .open-requests-button {
+  padding: 20px 20px;
+  width: 100%;
 }
-.login-body {
-  padding: 25px;
+
+.status-nav-col {
+  text-align: center;
 }

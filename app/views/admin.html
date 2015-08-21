@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-3 status-nav-col">
 
-    <button class="btn btn-md btn-primary" ng-click="showOpen()">
+    <button class="btn btn-md btn-primary open-requests-button" ng-click="showOpen()">
       Outstanding Requests
     </button>
     <br><br>
@@ -42,9 +42,9 @@
                   </select>
                   Status:
                   <select ng-model="newRequest.batch.status.label">
-                    <option value="open">Open</option>
-                    <option value="pending">Pending</option>
-                    <option value="closed">Closed</option>
+                    <option value="Open">Open</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Closed">Closed</option>
                   </select>
 
                 </div>
@@ -79,10 +79,10 @@
             </thead>
 
             <tbody>
-              <tr ng-repeat="request in requests | filter:searchText | filter:{status: statusKey}">
+              <tr ng-repeat="request in requests | filter:searchText | filter: openOrClosed">
                 <td><span editable-text="request.requester" onaftersave="updateRequest(request)">{{request.requester}}</span></td>
                 <td><span editable-text="request.client" onaftersave="updateRequest(request)">{{request.client}}</span></td>
-                <td><span editable-text="request.drug" onaftersave="updateRequest(request)">{{request.drug}}</span></td>
+                <td><span editable-text="request.drug.drug_name" onaftersave="updateRequest(request)">{{request.drug.drug_name}}</span></td>
                 <td>
                   <select ng-model="request.priority" ng-change="updateRequest(request)">
                     <option value="low">Low</option>
@@ -94,9 +94,9 @@
                 <td><span editable-text="request.batch.batch_name" onaftersave="updateRequest(request)">{{request.batch.batch_name}}</span></td>
                 <td>
                   <select ng-model="request.batch.status.label" ng-change="updateRequest(request)">
-                    <option value="open">Open</option>
-                    <option value="pending">Pending</option>
-                    <option value="closed">Closed</option>
+                    <option value="Open">Open</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Closed">Closed</option>
                   </select>
                 </td>
               </tr>

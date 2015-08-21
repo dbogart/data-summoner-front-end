@@ -8,10 +8,12 @@
       <form ng-submit="submit()">
         <div class="user-request-body">
           <div class="form-group">
-            <input class="form-control" type="text" ng-model="newRequest.drug.aedrug_id" placeholder="drug ID" required="true" />
+            <label for="client">Drug ID</label>
+            <input class="form-control" id="drug-id" type="text" ng-model="newRequest.drug.aedrug_id" placeholder="enter drug ID" required="true" />
           </div>
           <div class="form-group">
-            <input class="form-control" type="client" ng-model="newRequest.client" placeholder="client (optional)" />
+            <label for="client">Client</label>
+            <input class="form-control" id="client" type="client" ng-model="newRequest.client" placeholder="client (optional)" />
           </div>
           <div class="form-group">
             <input type="submit" id="submit" value="Submit" class="btn btn-md btn-primary"/>
